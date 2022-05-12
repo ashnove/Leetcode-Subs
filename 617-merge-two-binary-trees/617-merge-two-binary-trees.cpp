@@ -16,18 +16,7 @@ public:
             if(root1 == root2){
                 return NULL;
             }
-            else if(root1){ 
-                TreeNode* currentNode = new TreeNode(root1->val);
-                currentNode->left = mergeTrees(root1->left, root2);
-                currentNode->right = mergeTrees(root1->right, root2);
-                return currentNode;
-            }
-            else {
-                TreeNode* currentNode = new TreeNode(root2->val);
-                currentNode->left = mergeTrees(root1, root2->left);
-                currentNode->right = mergeTrees(root1, root2->right);
-                return currentNode;
-            }
+            else return root1 ? root1 : root2;
         }
         TreeNode* currentNode = new TreeNode(root1->val + root2->val);
         currentNode->left = mergeTrees(root1->left, root2->left);
