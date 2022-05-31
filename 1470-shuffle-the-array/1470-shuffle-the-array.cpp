@@ -6,14 +6,9 @@ public:
             nums[i + n] <<= 10;
             nums[i + n] |= nums[i];
         }
-        int p = 0;
-        for(int i = 0; i < 2*n; i+=2, p++){
-            int second = nums[p + n] >> 10;
-            second <<= 10;
-            int first = nums[p + n] ^ second;
-            second >>= 10;
-            nums[i] = first;
-            nums[i + 1] = second;
+        for(int i = 0, p = 0; i < 2*n; i+=2, p++){
+            nums[i] = nums[p + n] & ( (1<<10) - 1);  // keep all 1 in the second half to extract number stored in the second half
+            nums[i + 1] = nums[p + n] >> 10;         // get the first half
         }
         return nums;
     }
