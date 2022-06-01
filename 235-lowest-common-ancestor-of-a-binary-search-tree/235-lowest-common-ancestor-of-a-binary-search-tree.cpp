@@ -15,17 +15,12 @@ public:
         int forLeft = p->val;
         int forRight = q->val;
         if(forLeft > forRight) swap(forLeft, forRight);
-        
-        if(forLeft <= root->val && forRight >= root->val){
-            return root;
-        }
-        
         if(forRight < root->val){
             return lowestCommonAncestor(root->left, p, q);
         }
-        else{
+        if(forLeft > root->val){
             return lowestCommonAncestor(root->right, p, q);
         }
-        
+        return root;
     }
 };
