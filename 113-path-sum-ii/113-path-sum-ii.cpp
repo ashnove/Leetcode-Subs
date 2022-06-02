@@ -24,10 +24,10 @@ public:
         if(root->left == NULL && root->right == NULL && targetSum == root->val){
             paths.push_back(path);
         }
-
-        pathSumUtil(root->left, targetSum-root->val, path, paths);
-        pathSumUtil(root->right, targetSum-root->val, path, paths);
-
+        else {
+            pathSumUtil(root->left, targetSum-root->val, path, paths);
+            pathSumUtil(root->right, targetSum-root->val, path, paths);
+        }
         path.pop_back();
     }
 };
