@@ -15,6 +15,6 @@ public:
         if(root == NULL) return 1;
         long long node = root->val;
         if(node > high || node < low) return 0;
-        return 1 && isValidBST(root->left, low, node - 1) && isValidBST(root->right, node + 1, high);
+        return isValidBST(root->left, low, node - 1) && isValidBST(root->right, node + 1, high);
     }
 };
