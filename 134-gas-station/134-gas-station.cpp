@@ -6,8 +6,8 @@ public:
         for(int i = 0; i < gas.size(); i++){
             hasFuel += gas[i];
             hasFuel -= cost[i];
-            if(hasFuel < 0){
-                excess -= hasFuel;
+            if(hasFuel < 0){             //deadends
+                excess -= hasFuel;       //keep track of the excess fuel required to travel till ith station without reaching deadends.
                 hasFuel = 0;
                 idx = (i + 1) % gas.size();
             }
