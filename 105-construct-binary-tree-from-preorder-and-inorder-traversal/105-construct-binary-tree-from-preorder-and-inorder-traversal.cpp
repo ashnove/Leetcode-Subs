@@ -12,21 +12,20 @@
 class Solution {
 public:
     int idx = 0;
-    TreeNode* buildTree(vector<int>& preorder, vector<int>& inorder, int low = 0, int high = -10) {
-        if(high == -10) high = preorder.size() - 1;
+    TreeNode* helper(vector<int>& preorder, vector<int>& inorder, int low, int high, unordered_map<int,int>& hash){
         if(idx == preorder.size() || low > high) return NULL;
         TreeNode* currentNode = new TreeNode(preorder[idx]);
-        int pos = 0;
-        for(int i = low; i <= high; i++){
-            if(preorder[idx] == inorder[i]){
-                pos = i;
-                break;
-            }
-        }
+        int pos = hash[preorder[idx]];
         idx++;
-        // cout << low << " " << pos << " " << high << endl;
-        currentNode->left = buildTree(preorder, inorder, low, pos - 1);
-        currentNode->right = buildTree(preorder, inorder, pos + 1, high);
+        currentNode->left = helper(preorder, inorder, low, pos - 1, hash);
+        currentNode->right = helper(preorder, inorder, pos + 1, high, hash);
         return currentNode;
+    }
+    TreeNode* buildTree(vector<int>& preorder, vector<int>& inorder) {
+        unordered_map<int,int> hash;
+        for(int i = 0; i < inorder.size(); i++){
+            hash[inorder[i]] = i;
+        }
+        return helper(preorder, inorder, 0, preorder.size() - 1, hash);
     }
 };
