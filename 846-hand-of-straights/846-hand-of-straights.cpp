@@ -4,19 +4,13 @@ public:
         map<int,int> count;
         for(int i : hand) count[i]++;
         
-        sort(hand.begin(), hand.end());
-        
-        for(int i = 0; i < hand.size(); i++){
-            if(count[hand[i]] == 0) continue;
-            vector<int> temp;
-            int cnt = 0;
-            for(int j = hand[i]; j < hand[i] + groupSize && count[j]; j++){
-                cnt++;
-                count[j]--;
-            }
-            if(cnt != groupSize){
-                
-                return 0;
+        for(auto elem : count){
+            if(elem.second == 0) continue;
+            for(int j = elem.first; j < elem.first + groupSize; j++){
+                if(count[j] < elem.second) {
+                    return 0;
+                }
+                count[j]-=elem.second;
             }
         }
         return 1;
