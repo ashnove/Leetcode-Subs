@@ -10,10 +10,11 @@ public:
         };
         stack<int> s;
         for(string token : tokens){
-            if(operation.count(token)){
+            const auto &op = operation.find(token);
+            if(op != operation.end()){
                 int num1 = s.top(); s.pop();
                 int num2 = s.top(); s.pop();
-                s.push(operation[token](num2, num1));
+                s.push((*op).second(num2, num1));
             }
             else {
                 s.push(stoi(token));
