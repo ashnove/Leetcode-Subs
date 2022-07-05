@@ -2,16 +2,16 @@ class Solution {
 public:
     int longestConsecutive(vector<int>& nums) {
         unordered_map<int, int> hash;
+        int numCount = nums.size();
         int result = 0;
-        for(int num : nums) hash[num]=1;
-        for(int num : nums){
-            if(!hash[num-1]){
-                int size = 0;
-                while(hash[num]){
-                    num++;
-                    size++;
+        for(int i = 0; i < numCount; i++) hash[nums[i]]=1;
+        for(int i = 0; i < numCount; i++){
+            if(!hash[nums[i]-1]){
+                int end = nums[i];
+                while(hash[end]){
+                    end++;
                 }
-                result = max(result, size);
+                result = max(result, end-nums[i]);
             }
         }
         return result;
