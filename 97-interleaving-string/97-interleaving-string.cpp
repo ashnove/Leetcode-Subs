@@ -1,3 +1,6 @@
+
+//------------------BOTTOM-UP------------------\\
+
 // class Solution {
 // public:
 //     int dp[200][200];
@@ -20,6 +23,9 @@
 //         return calc(s1, s2, s3, s3.size(), s1.size(), s2.size());
 //     }
 // };
+
+//------------------TOP-BOTTOM------------------\\
+
 class Solution {
 public:
     bool isInterleave(string s1, string s2, string s3) {
