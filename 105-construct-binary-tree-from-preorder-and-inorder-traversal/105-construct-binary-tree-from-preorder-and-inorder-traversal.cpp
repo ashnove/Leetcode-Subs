@@ -13,7 +13,7 @@ class Solution {
 public:
     int idx = 0;
     TreeNode* helper(vector<int>& preorder, vector<int>& inorder, int low, int high, unordered_map<int,int>& hash){
-        if(idx == preorder.size() || low > high) return NULL;
+        if(idx == preorder.size() || low > high) return NULL; // (low > high) states inorder range exhausted
         TreeNode* currentNode = new TreeNode(preorder[idx]);
         int pos = hash[preorder[idx]];
         idx++;
